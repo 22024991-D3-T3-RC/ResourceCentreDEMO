@@ -224,7 +224,7 @@ public class ResourceCentre {
 	}
 	
 	//================================= Option 4 Return an item (CRUD - Update)=================================
-	public static boolean doReturnCamcorder(ArrayList<Camcorder> camcorderList,String tag) {
+	public static boolean doReturnCamcorder(ArrayList<Camcorder> camcorderList, String tag) {
 		boolean isReturned = false;
 
 		for (int i = 0; i < camcorderList.size(); i++) {
@@ -233,16 +233,48 @@ public class ResourceCentre {
 				camcorderList.get(i).setIsAvailable(true);
 				camcorderList.get(i).setDueDate("");
 				isReturned = true;
-				
+
 			}
 		}
 		return isReturned;
-		
+
 	}
+
 	public static void returnCamcorder(ArrayList<Camcorder> camcorderList) {
 		ResourceCentre.viewAllCamcorder(camcorderList);
 		String tag = Helper.readString("Enter asset tag > ");
 		Boolean isReturned = doReturnCamcorder(camcorderList, tag);
+
+		if (isReturned == false) {
+			System.out.println("Invalid asset tag");
+		} else {
+			System.out.println("Camcorder " + tag + " returned");
+		}
+	}
+
+	public static boolean doReturnChromebook(ArrayList<Chromebook> chromebookList, String tag) {
+		boolean isReturned = false;
+		// write your code here
+
+		for (int i = 0; i < chromebookList.size(); i++) {
+			if (tag.equalsIgnoreCase(chromebookList.get(i).getAssetTag())
+					&& chromebookList.get(i).getIsAvailable() == false) {
+				chromebookList.get(i).setIsAvailable(true);
+				chromebookList.get(i).setDueDate("");
+				isReturned = true;
+				
+			}
+		}
+		return isReturned;
+	}
+
+	public static void returnChromebook(ArrayList<Chromebook> chromebookList) {
+		// write your code here
+
+	
+		ResourceCentre.viewAllChromebook(chromebookList);
+		String tag = Helper.readString("Enter asset tag > ");
+		Boolean isReturned = doReturnChromebook(chromebookList, tag);
 		
 		if (isReturned == false) {
 			System.out.println("Invalid asset tag");
@@ -251,15 +283,8 @@ public class ResourceCentre {
 		}
 	}
 
-	public static boolean doReturnChromebook(ArrayList<Chromebook> chromebookList,String tag){
-		boolean isReturned = false;
-		// write your code here
-		return isReturned;
-	}
-	public static void returnChromebook(ArrayList<Chromebook> chromebookList) {
-		// write your code here
 	
 	}
 
 
-}
+
